@@ -12,6 +12,7 @@ class WorkerDashboardProvider extends ChangeNotifier {
 
   bool loading = false;
 
+  String? error;
 
   Map<String,dynamic>? dashboard;
 
@@ -26,6 +27,8 @@ class WorkerDashboardProvider extends ChangeNotifier {
 
     loading = true;
 
+    error = null;
+
     notifyListeners();
 
 
@@ -34,6 +37,9 @@ class WorkerDashboardProvider extends ChangeNotifier {
       dashboard =
           await _service.getDashboard(token);
 
+    } catch (e) {
+
+      error = e.toString();
 
     } finally {
 
@@ -51,6 +57,8 @@ class WorkerDashboardProvider extends ChangeNotifier {
 
     loading = true;
 
+    error = null;
+
     notifyListeners();
 
 
@@ -59,6 +67,9 @@ class WorkerDashboardProvider extends ChangeNotifier {
       bookings =
           await _service.getBookings();
 
+    } catch (e) {
+
+      error = e.toString();
 
     } finally {
 

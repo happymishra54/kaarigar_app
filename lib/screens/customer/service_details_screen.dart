@@ -26,7 +26,7 @@ class ServiceDetailsScreen extends StatelessWidget {
               width: double.infinity,
               height: 250,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) {
+              errorBuilder: (_, _, _) {
                 return Container(
                   height: 250,
                   color: Colors.grey.shade300,

@@ -11,6 +11,9 @@ class BookingModel {
   final String customerPhone;
   final String serviceTitle;
 
+  final String workerName;
+  final String workerPhone;
+
   BookingModel({
     required this.id,
     required this.bookingNumber,
@@ -22,6 +25,8 @@ class BookingModel {
     required this.customerName,
     required this.customerPhone,
     required this.serviceTitle,
+    required this.workerName,
+    required this.workerPhone,
   });
 
   factory BookingModel.fromJson(Map<String, dynamic> json) {
@@ -45,6 +50,10 @@ class BookingModel {
       customerPhone: json["customer"]?["phone"] ?? "",
 
       serviceTitle: json["service"]?["title"] ?? "",
+
+      workerName: json["worker"]?["name"] ?? "",
+
+      workerPhone: json["worker"]?["phone"] ?? "",
     );
   }
 }

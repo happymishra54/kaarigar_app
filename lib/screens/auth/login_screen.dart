@@ -8,6 +8,7 @@ import '../customer/customer_bottom_nav.dart';
 import 'register_screen.dart';
 import '../worker/complete_profile_screen.dart';
 import '../../services/worker_profile_service.dart';
+import '../admin/admin_dashboard_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -39,89 +40,110 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> login() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+  if (!_formKey.currentState!.validate()) {
+    return;
+  }
 
-    final auth = context.read<AuthProvider>();
+  final auth = context.read<AuthProvider>();
 
-    try {
-      final success = await auth.login(
-        login: loginController.text.trim(),
-        password: passwordController.text,
-        role: widget.role,
-      );
+  try {
+    final success = await auth.login(
+      login: loginController.text.trim(),
+      password: passwordController.text,
+      role: widget.role,
+    );
 
-      if (!mounted) return;
+    if (!mounted) return;
 
-      if (success) {
-        if (widget.role == "customer") {
+    if (success) {
+      final role = auth.user?.role;
+
+      // ==========================
+      // ADMIN LOGIN
+      // ==========================
+      if (role == "admin") {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const AdminDashboardScreen(),
+          ),
+        );
+        return;
+      }
+
+      // ==========================
+      // CUSTOMER LOGIN
+      // ==========================
+      if (role == "customer") {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const CustomerBottomNav(),
+          ),
+        );
+        return;
+      }
+
+      // ==========================
+      // WORKER LOGIN
+      // ==========================
+      if (role == "worker") {
+        final workerProfileService = WorkerProfileService();
+
+        final profileStatus =
+            await workerProfileService.checkProfileStatus();
+
+        final isCompleted =
+            profileStatus["completed"] == true;
+
+        final profile =
+            profileStatus["profile"];
+
+        if (!mounted) return;
+
+        if (isCompleted) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (_) => const CustomerBottomNav(),
+              builder: (_) => WorkerBottomNav(
+                profile: profile,
+              ),
             ),
           );
-                } else {
-
-          final workerProfileService =
-              WorkerProfileService();
-
-
-          final profileStatus =
-              await workerProfileService.checkProfileStatus();
-
-
-          final isCompleted =
-    profileStatus["completed"] == true;
-
-
-          final profile =
-              profileStatus["profile"];
-
-
-          if (!mounted) return;
-
-
-          if (isCompleted) {
-
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) =>
-                    WorkerBottomNav(
-    profile: profile,
-),
-              ),
-            );
-
-
-          } else {
-
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) =>
-                    CompleteProfileScreen(profile: profile),
-              ),
-            );
-
-          }
-
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) =>
+                  CompleteProfileScreen(
+                    profile: profile,
+                  ),
+            ),
+          );
         }
-      }
-    } catch (e) {
-      if (!mounted) return;
 
+        return;
+      }
+
+      // Unknown role
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            e.toString(),
-          ),
+        const SnackBar(
+          content: Text("Unknown user role."),
         ),
       );
     }
+  } catch (e) {
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          e.toString(),
+        ),
+      ),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {

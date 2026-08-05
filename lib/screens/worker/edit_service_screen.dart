@@ -146,7 +146,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                       const SizedBox(height: 20),
 
                       DropdownButtonFormField<CategoryModel>(
-                        value: selectedCategory,
+                        initialValue: selectedCategory,
                         decoration: InputDecoration(
                           labelText: "Category",
                           prefixIcon: const Icon(Icons.category),

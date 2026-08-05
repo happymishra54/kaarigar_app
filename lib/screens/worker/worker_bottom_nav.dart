@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/worker_booking_provider.dart';
 import 'worker_dashboard_screen.dart';
 import 'my_services_screen.dart';
 import 'worker_bookings_screen.dart';
@@ -32,6 +34,17 @@ class _WorkerBottomNavState extends State<WorkerBottomNav> {
     ];
   }
 
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+
+// Reload bookings data whenever user switches to bookings tab
+    if (index == 2) {
+      context.read<WorkerBookingProvider>().loadBookings();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +54,7 @@ class _WorkerBottomNavState extends State<WorkerBottomNav> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        onTap: _onTabTapped,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Colors.grey,

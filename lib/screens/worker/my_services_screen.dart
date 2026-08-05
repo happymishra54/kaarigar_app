@@ -65,7 +65,7 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
                               width: 60,
                               height: 60,
                               fit: BoxFit.cover,
-                              errorBuilder: (_, __, ___) {
+                              errorBuilder: (_, _, _) {
                                 return const Icon(
                                   Icons.home_repair_service,
                                   size: 40,

@@ -44,11 +44,7 @@ class WorkerDashboardService {
     },
   );
 
-  print("DASHBOARD RESPONSE");
-  print(response.statusCode);
-  print(response.body);
-
-  final data = jsonDecode(response.body);
+final data = jsonDecode(response.body);
 
   if (response.statusCode == 200) {
     return data;

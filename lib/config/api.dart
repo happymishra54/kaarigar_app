@@ -13,7 +13,9 @@ class Api {
 
   static const String services = '$baseUrl/services';
 
-  static const String nearbyWorkers = '$baseUrl/nearby-workers';
+static const String nearbyWorkers = '$baseUrl/nearby-workers';
+
+  static const String topWorkers = '$baseUrl/top-workers';
 
   static const String profile = '$baseUrl/profile';
 
@@ -35,5 +37,18 @@ class Api {
 
   static const String workerProfileStatus ='$baseUrl/worker/profile-status';
 
+  static const String adminUsers = "$baseUrl/admin/users";
+
+  static const String adminDashboard = "$baseUrl/admin/dashboard";
+
+  static const String adminWorkers = "$baseUrl/admin/workers";
+
+  static const String adminCategories ="$baseUrl/admin/categories";
+
+  static const String adminBookings ="$baseUrl/admin/bookings";
+
+  static const String pendingWorkers ="$baseUrl/admin/workers/pending-verification";
+
+  static const String favorites = "$baseUrl/favorites";
 
 }

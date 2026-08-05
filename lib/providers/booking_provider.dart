@@ -8,16 +8,19 @@ class BookingProvider extends ChangeNotifier {
 
   bool loading = false;
 
+  String? error;
+
   List<BookingModel> bookings = [];
 
-  Future<void> loadBookings(String token) async {
+  Future<void> loadBookings() async {
     loading = true;
+    error = null;
     notifyListeners();
 
     try {
-      bookings = await _service.getBookings(token);
+      bookings = await _service.getBookings();
     } catch (e) {
-      rethrow;
+      error = e.toString();
     } finally {
       loading = false;
       notifyListeners();
@@ -32,6 +35,7 @@ class BookingProvider extends ChangeNotifier {
     required String address,
   }) async {
     loading = true;
+    error = null;
     notifyListeners();
 
     try {
@@ -45,6 +49,7 @@ class BookingProvider extends ChangeNotifier {
 
       return success;
     } catch (e) {
+      error = e.toString();
       rethrow;
     } finally {
       loading = false;

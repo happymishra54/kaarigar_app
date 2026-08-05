@@ -29,8 +29,10 @@ class ServiceModel {
       description: json['description'] ?? '',
       price: double.tryParse(json['price'].toString()) ?? 0,
       image: json['image'] ?? '',
-      category: json['category'] ?? '',
-      worker: UserModel.fromJson(json['worker']),
+      category: json['category'] is Map
+          ? (json['category'] as Map)['name']?.toString() ?? ''
+          : json['category']?.toString() ?? '',
+      worker: UserModel.fromJson(json['worker'] ?? {}),
     );
   }
 }

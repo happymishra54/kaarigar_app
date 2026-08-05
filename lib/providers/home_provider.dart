@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/category_model.dart';
 import '../models/service_model.dart';
+import '../models/top_worker_model.dart';
 import '../services/home_service.dart';
 
 class HomeProvider extends ChangeNotifier {
@@ -11,19 +12,34 @@ class HomeProvider extends ChangeNotifier {
 
   List<ServiceModel> services = [];
 
+  List<TopWorkerModel> topWorkers = [];
+
   bool loading = true;
+
+  String? error;
 
   Future<void> loadHome() async {
     loading = true;
+    error = null;
 
     notifyListeners();
 
-    categories = await _service.getCategories();
+    try {
+      categories = await _service.getCategories();
 
-    services = await _service.getServices();
+      services = await _service.getServices();
 
-    loading = false;
+      try {
+        topWorkers = await _service.getTopWorkers();
+      } catch (_) {
+        topWorkers = [];
+      }
+    } catch (e) {
+      error = e.toString();
+    } finally {
+      loading = false;
 
-    notifyListeners();
+      notifyListeners();
+    }
   }
 }

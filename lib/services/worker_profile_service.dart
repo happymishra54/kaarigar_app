@@ -127,16 +127,8 @@ class WorkerProfileService {
 
 
 
-    final body =
+final body =
         await response.stream.bytesToString();
-
-
-
-    print("PROFILE RESPONSE:");
-    print(response.statusCode);
-    print(body);
-
-
 
     final data =
         jsonDecode(body);
@@ -192,16 +184,9 @@ class WorkerProfileService {
   );
 
 
-  final data = jsonDecode(
+final data = jsonDecode(
     response.body,
   );
-
-
-  print("PROFILE STATUS RESPONSE:");
-  print(response.statusCode);
-  print(data);
-
-
 
   if(response.statusCode == 200){
 

@@ -9,8 +9,16 @@ import 'providers/profile_provider.dart';
 import 'providers/worker_provider.dart';
 import 'providers/worker_profile_provider.dart';
 import 'providers/worker_dashboard_provider.dart';
+import 'providers/worker_booking_provider.dart';
 import 'providers/worker_service_provider.dart';
 import 'providers/category_provider.dart';
+import 'providers/admin_user_provider.dart';
+import 'providers/admin_worker_provider.dart';
+import 'providers/admin_category_provider.dart';
+import 'providers/admin_booking_provider.dart';
+import 'providers/add_worker_provider.dart';
+
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,8 +43,12 @@ class KaarigarApp extends StatelessWidget {
           create: (_) => WorkerServiceProvider(),
         ),
 
-        ChangeNotifierProvider(
+ChangeNotifierProvider(
           create: (_) => WorkerDashboardProvider(),
+        ),
+
+        ChangeNotifierProvider(
+          create: (_) => WorkerBookingProvider(),
         ),
 
         ChangeNotifierProvider(
@@ -51,6 +63,10 @@ class KaarigarApp extends StatelessWidget {
           create: (_) => BookingProvider(),
         ), 
 
+        ChangeNotifierProvider(
+            create: (_) => AdminUserProvider(),
+        ),
+
         ChangeNotifierProvider<HomeProvider>(
           create: (_) => HomeProvider(),
         ),
@@ -61,6 +77,22 @@ class KaarigarApp extends StatelessWidget {
 
         ChangeNotifierProvider(
           create: (_) => WorkerProvider(),
+        ),
+
+        ChangeNotifierProvider(
+          create: (_) => AdminWorkerProvider(),
+        ),
+
+        ChangeNotifierProvider(
+          create: (_) => AdminCategoryProvider(),
+        ),
+
+        ChangeNotifierProvider(
+          create: (_) => AdminBookingProvider(),
+        ),
+
+        ChangeNotifierProvider(
+          create: (_) => AddWorkerProvider(),
         ),
 
       ],

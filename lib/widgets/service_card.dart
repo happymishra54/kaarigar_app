@@ -51,14 +51,14 @@ class ServiceCard extends StatelessWidget {
                       width: double.infinity,
                       height: 190,
                       fit: BoxFit.cover,
-                      placeholder: (_, __) => Container(
+                      placeholder: (_, _) => Container(
                         height: 190,
                         color: Colors.grey.shade200,
                         child: const Center(
                           child: CircularProgressIndicator(),
                         ),
                       ),
-                      errorWidget: (_, __, ___) => Container(
+                      errorWidget: (_, _, _) => Container(
                         height: 190,
                         color: Colors.grey.shade200,
                         child: const Center(
