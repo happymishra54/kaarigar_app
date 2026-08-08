@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../worker/worker_bottom_nav.dart';
 import '../../providers/auth_provider.dart';
+import '../../utils/app_colors.dart';
 import '../../widgets/app_textfield.dart';
 import '../../widgets/primary_button.dart';
 import '../customer/customer_bottom_nav.dart';
@@ -145,54 +146,102 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-  @override
+@override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login"),
-      ),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 30),
-
-                const Icon(
-                  Icons.home_repair_service,
-                  size: 80,
-                  color: Colors.blue,
-                ),
-
-                const SizedBox(height: 20),
-
-                const Center(
-                  child: Text(
-                    "Welcome Back",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
+                // Gradient header
+                Container(
+                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 40),
+                  decoration: const BoxDecoration(
+                    gradient: AppColors.brandGradient,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(32),
+                      bottomRight: Radius.circular(32),
                     ),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Spacer(),
+                          const Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const Spacer(),
+                          const SizedBox(width: 48),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Container(
+                        width: 88,
+                        height: 88,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(26),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: .18),
+                              blurRadius: 24,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.home_repair_service_rounded,
+                          size: 46,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      const Text(
+                        "Welcome Back",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "Login as ${widget.role.toUpperCase()}",
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: .88),
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
-                const SizedBox(height: 8),
-
-                Center(
-                  child: Text(
-                    "Login as ${widget.role.toUpperCase()}",
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 40),
+                // Form body
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
 
                 AppTextField(
                   controller: loginController,
@@ -250,7 +299,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
 
                 PrimaryButton(
-                  text: "LOGIN",
+                  text: "Login",
+                  icon: Icons.login_rounded,
                   loading: auth.loading,
                   onPressed: login,
                 ),
@@ -277,6 +327,9 @@ class _LoginScreenState extends State<LoginScreen> {
   child: const Text("Register"),
 )
                   ],
+                ),
+                    ],
+                  ),
                 ),
               ],
             ),

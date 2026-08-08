@@ -52,36 +52,54 @@ class _WorkerBottomNavState extends State<WorkerBottomNav> {
         index: _currentIndex,
         children: _screens,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_outlined),
-            activeIcon: Icon(Icons.dashboard),
-            label: "Dashboard",
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(24),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.build_outlined),
-            activeIcon: Icon(Icons.build),
-            label: "Services",
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: .06),
+              blurRadius: 20,
+              offset: const Offset(0, -4),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(24),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today_outlined),
-            activeIcon: Icon(Icons.calendar_today),
-            label: "Bookings",
+          child: NavigationBar(
+            selectedIndex: _currentIndex,
+            onDestinationSelected: _onTabTapped,
+            backgroundColor: Colors.white,
+            surfaceTintColor: Colors.transparent,
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(Icons.dashboard_outlined),
+                selectedIcon: Icon(Icons.dashboard),
+                label: "Dashboard",
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.build_outlined),
+                selectedIcon: Icon(Icons.build),
+                label: "Services",
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.calendar_today_outlined),
+                selectedIcon: Icon(Icons.calendar_today),
+                label: "Bookings",
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.person_outline),
+                selectedIcon: Icon(Icons.person),
+                label: "Profile",
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: "Profile",
-          ),
-        ],
+        ),
       ),
     );
   }
 }
-

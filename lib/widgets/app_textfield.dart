@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/app_colors.dart';
+
 class AppTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
@@ -27,12 +29,32 @@ class AppTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscure,
       validator: validator,
+      cursorColor: AppColors.primary,
       decoration: InputDecoration(
         hintText: hint,
-        prefixIcon: Icon(icon),
+        prefixIcon: Icon(icon, color: AppColors.primary),
         suffixIcon: suffixIcon,
+        filled: true,
+        fillColor: AppColors.card,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: Colors.grey.shade300),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: Colors.grey.shade300),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.primary, width: 1.6),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: AppColors.danger),
+        ),
+focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: AppColors.danger, width: 1.6),
         ),
       ),
     );

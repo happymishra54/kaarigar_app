@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/app_colors.dart';
+
 class HomeAppBar extends StatelessWidget {
   final String name;
   final VoidCallback? onBookings;
@@ -21,14 +23,7 @@ class HomeAppBar extends StatelessWidget {
 
       decoration: BoxDecoration(
 
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xff2563EB),
-            Color(0xff1D4ED8),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        gradient: AppColors.brandGradient,
 
 borderRadius: BorderRadius.circular(24),
 
@@ -68,7 +63,7 @@ borderRadius: BorderRadius.circular(24),
                 child: const Icon(
                   Icons.person,
                   size: 36,
-                  color: Color(0xff2563EB),
+                  color: AppColors.primary,
                 ),
 
               ),

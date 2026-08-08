@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/top_worker_model.dart';
 import '../../providers/home_provider.dart';
+import '../../utils/app_colors.dart';
 
 import '../../widgets/home/hero_section.dart';
 import '../../widgets/home/quick_actions.dart';
@@ -258,12 +259,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
-                gradient: const LinearGradient(
-                  colors: [
-                    Color(0xff2563EB),
-                    Color(0xff1D4ED8),
-                  ],
-                ),
+                gradient: AppColors.brandGradient,
               ),
               child: Row(
                 children: [
@@ -462,7 +458,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                 children: [
                   Icon(
                     Icons.handyman_rounded,
-                    color: Colors.blue.shade700,
+                    color: AppColors.primary,
                     size: 40,
                   ),
                   const SizedBox(height: 10),
@@ -516,7 +512,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                     fit: BoxFit.cover,
                     errorBuilder: (_, _, _) => const CircleAvatar(
                       radius: 25,
-                      backgroundColor: Color(0xff2563EB),
+                      backgroundColor: AppColors.primary,
                       child: Icon(
                         Icons.person,
                         color: Colors.white,
@@ -526,7 +522,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                   )
                 : const CircleAvatar(
                     radius: 25,
-                    backgroundColor: Color(0xff2563EB),
+                    backgroundColor: AppColors.primary,
                     child: Icon(
                       Icons.person,
                       color: Colors.white,
@@ -605,7 +601,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                color: Color(0xff2563EB),
+                color: AppColors.primary,
                 fontWeight: FontWeight.bold,
                 fontSize: 15,
               ),

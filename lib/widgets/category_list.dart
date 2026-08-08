@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/category_model.dart';
+import '../utils/app_colors.dart';
 
 class CategoryList extends StatelessWidget {
   final List<CategoryModel> categories;
@@ -96,9 +97,7 @@ boxShadow: [
 
                       decoration: BoxDecoration(
 
-                        color: const Color(
-                          0xffEFF6FF,
-                        ),
+                        color: AppColors.surfaceTint,
 
                         borderRadius:
                             BorderRadius.circular(18),
@@ -125,9 +124,7 @@ errorBuilder:
                                       category.name,
                                     ),
 
-                                    color: const Color(
-                                      0xff2563EB,
-                                    ),
+                                    color: AppColors.primary,
 
                                     size: 34,
 
@@ -145,9 +142,7 @@ errorBuilder:
                                 category.name,
                               ),
 
-                              color: const Color(
-                                0xff2563EB,
-                              ),
+                              color: AppColors.primary,
 
                               size: 34,
 

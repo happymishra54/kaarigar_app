@@ -52,27 +52,55 @@ class _MyServicesScreenState extends State<MyServicesScreen> {
                     itemBuilder: (context, index) {
                       final service = provider.services[index];
 
-                      return Card(
+                    return Card(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 15,
                           vertical: 8,
                         ),
                         child: ListTile(
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              service.image,
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                              errorBuilder: (_, _, _) {
-                                return const Icon(
-                                  Icons.home_repair_service,
-                                  size: 40,
-                                );
-                              },
-                            ),
-                          ),
+                          leading: service.image.isEmpty
+                              ? Container(
+                                  width: 60,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withValues(alpha: .10),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: const Icon(
+                                    Icons.home_repair_service,
+                                    size: 40,
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.network(
+                                    service.image,
+                                    width: 60,
+                                    height: 60,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (_, _, _) {
+                                      return Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                              .withValues(alpha: .10),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: const Icon(
+                                          Icons.home_repair_service,
+                                          size: 40,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
                           title: Text(service.title),
                           subtitle: Column(
                             crossAxisAlignment:

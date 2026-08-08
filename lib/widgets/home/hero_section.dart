@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/app_colors.dart';
+
 class HeroSection extends StatelessWidget {
   final String name;
 
@@ -15,16 +17,9 @@ class HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(24, 60, 24, 30),
+      padding: const EdgeInsets.fromLTRB(24, 60, 24, 32),
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xff2563EB),
-            Color(0xff1D4ED8),
-          ],
-        ),
+        gradient: AppColors.brandGradient,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(35),
           bottomRight: Radius.circular(35),
@@ -41,10 +36,17 @@ class HeroSection extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(18),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: .12),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: const Icon(
                   Icons.handyman_rounded,
-                  color: Color(0xff2563EB),
+                  color: AppColors.primary,
                   size: 32,
                 ),
               ),
@@ -53,6 +55,9 @@ class HeroSection extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: .15),
                   borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: .2),
+                  ),
                 ),
                 child: IconButton(
                   onPressed: () {},
@@ -77,8 +82,9 @@ class HeroSection extends StatelessWidget {
             name,
             style: const TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w800,
               fontSize: 30,
+              letterSpacing: -0.5,
             ),
           ),
           const SizedBox(height: 8),
@@ -98,12 +104,19 @@ class HeroSection extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: .12),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
               ),
               child: Row(
                 children: [
                   const Icon(
                     Icons.search,
-                    color: Color(0xff2563EB),
+                    color: AppColors.primary,
                   ),
                   const SizedBox(width: 14),
                   Expanded(

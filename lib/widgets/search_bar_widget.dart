@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/app_colors.dart';
+
 class SearchBarWidget extends StatelessWidget {
   final VoidCallback onTap;
 
@@ -32,12 +34,12 @@ class SearchBarWidget extends StatelessWidget {
                   width: 42,
                   height: 42,
                   decoration: BoxDecoration(
-                    color: const Color(0xff2563EB).withValues(alpha: .10),
+                    color: AppColors.primary.withValues(alpha: .10),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
                     Icons.search_rounded,
-                    color: Color(0xff2563EB),
+                    color: AppColors.primary,
                     size: 24,
                   ),
                 ),

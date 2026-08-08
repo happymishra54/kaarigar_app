@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/worker_dashboard_provider.dart';
+import '../../utils/app_colors.dart';
 import '../profile/profile_screen.dart';
 import 'add_service_screen.dart';
 import 'my_services_screen.dart';
@@ -327,18 +328,15 @@ Future<void> loadDashboard() async {
           padding: const EdgeInsets.all(18),
           children: [
 
-            // Profile Header Card
+// Profile Header Card
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
+                gradient: AppColors.brandGradient,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .primary
-                        .withValues(alpha: .20),
+                    color: AppColors.primary.withValues(alpha: .30),
                     blurRadius: 16,
                     offset: const Offset(0, 6),
                   ),

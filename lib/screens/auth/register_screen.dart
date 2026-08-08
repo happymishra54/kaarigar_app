@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
+import '../../utils/app_colors.dart';
 import '../customer/customer_bottom_nav.dart';
 import '../worker/complete_profile_screen.dart';
 import '../../widgets/app_textfield.dart';
@@ -106,51 +107,99 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Create Account"),
-      ),
+return Scaffold(
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
 
-                const SizedBox(height: 20),
-
-                const Icon(
-                  Icons.person_add_alt_1,
-                  size: 80,
-                  color: Colors.blue,
-                ),
-
-                const SizedBox(height: 20),
-
-                const Center(
-                  child: Text(
-                    "Create Account",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
+                // Gradient header
+                Container(
+                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 40),
+                  decoration: const BoxDecoration(
+                    gradient: AppColors.brandGradient,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(32),
+                      bottomRight: Radius.circular(32),
                     ),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Spacer(),
+                          const Text(
+                            "Create Account",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const Spacer(),
+                          const SizedBox(width: 48),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Container(
+                        width: 82,
+                        height: 82,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(24),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: .18),
+                              blurRadius: 22,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.person_add_alt_1_rounded,
+                          size: 42,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      const Text(
+                        "Create Account",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "Register as ${widget.role.toUpperCase()}",
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: .88),
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
-                const SizedBox(height: 8),
-
-                Center(
-                  child: Text(
-                    "Register as ${widget.role.toUpperCase()}",
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 35),
+                // Form body
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
 
                                 AppTextField(
                   controller: nameController,
@@ -275,12 +324,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 30),
 
                 PrimaryButton(
-                  text: "REGISTER",
+                  text: "Create Account",
+                  icon: Icons.person_add_alt_1,
                   loading: auth.loading,
                   onPressed: register,
                 ),
 
-                const SizedBox(height: 25),
+const SizedBox(height: 25),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -295,6 +345,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: const Text("Login"),
                     ),
                   ],
+                ),
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/app_colors.dart';
+
 class QuickActions extends StatelessWidget {
   final VoidCallback onBookings;
   final VoidCallback onProfile;
@@ -36,7 +38,7 @@ class QuickActions extends StatelessWidget {
                   title: "Bookings",
                   subtitle: "Track jobs",
                   icon: Icons.receipt_long,
-                  color: const Color(0xff2563EB),
+                  color: AppColors.primary,
                   onTap: onBookings,
                 ),
               ),

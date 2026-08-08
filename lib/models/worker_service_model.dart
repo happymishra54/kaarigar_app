@@ -26,7 +26,19 @@ class WorkerServiceModel {
       description: json["description"] ?? "",
       price: json["price"].toString(),
       image: json["image"] ?? "",
-      status: json["status"]?.toString() ?? "",
+      status: _parseStatus(json["status"]),
     );
+  }
+
+  static String _parseStatus(dynamic value) {
+    final raw = value?.toString().toLowerCase();
+    if (raw == null) return "";
+    if (raw == "1" || raw == "true" || raw == "active") {
+      return "Active";
+    }
+    if (raw == "0" || raw == "false" || raw == "inactive") {
+      return "Inactive";
+    }
+    return raw[0].toUpperCase() + raw.substring(1);
   }
 }
