@@ -26,7 +26,7 @@ class WorkerServiceModel {
       description: json["description"] ?? "",
       price: json["price"].toString(),
       image: json["image"] ?? "",
-      status: json["status"] ?? "",
+      status: json["status"]?.toString() ?? "",
     );
   }
 }
